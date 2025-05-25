@@ -47,9 +47,11 @@ public class RedisConfig {
 	 * @return
 	 */
 	@Bean
-	RedisTemplate<?, ?> redisTemplate() {
-		RedisTemplate<?, ?> redisTemplate = new RedisTemplate<>();
+	RedisTemplate<String, String> redisTemplate() {
+		RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
 		redisTemplate.setConnectionFactory(redisConnectionFactory());
+		redisTemplate.setEnableTransactionSupport(true);
+
 		redisTemplate.setKeySerializer(new StringRedisSerializer());
 		redisTemplate.setValueSerializer(new StringRedisSerializer());
 		redisTemplate.setHashKeySerializer(new StringRedisSerializer());

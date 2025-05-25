@@ -31,14 +31,14 @@ import org.springframework.data.redis.core.ZSetOperations;
  * @author 김대광
  */
 @SpringBootTest
-public class RedisTemplateTest {
+class RedisTemplateTest {
 
 	@Autowired
 	private RedisTemplate<String, Object> redisTemplate;
 
 	@Test
 	@DisplayName("string 테스트")
-	public void testString() {
+	void testString() {
 		String key = "stringKey";
 		redisTemplate.delete(key);
 
@@ -55,7 +55,7 @@ public class RedisTemplateTest {
 
 	@Test
 	@DisplayName("list 테스트")
-	public void testList() {
+	void testList() {
 		String key = "listKey";
 		redisTemplate.delete(key);
 
@@ -81,7 +81,7 @@ public class RedisTemplateTest {
 
 	@Test
 	@DisplayName("set 테스트")
-	public void testSet() {
+	void testSet() {
 		String key = "setKey";
 		redisTemplate.delete(key);
 
@@ -108,7 +108,7 @@ public class RedisTemplateTest {
 
 	@Test
 	@DisplayName("sorted set 테스트")
-	public void testSortedSet() {
+	void testSortedSet() {
 		String key = "userRank";
 		redisTemplate.delete(key);
 
@@ -139,7 +139,7 @@ public class RedisTemplateTest {
 
 	@Test
 	@DisplayName("hash 테스트")
-	public void testHash() {
+	void testHash() {
 		String key = "gildong";
 		redisTemplate.delete(key);
 

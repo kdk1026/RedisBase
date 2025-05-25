@@ -8,6 +8,7 @@ class RedisBaseApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// 기본 생성
 	}
 
 }
