@@ -1,4 +1,4 @@
-package com.kdk.app.component;
+package com.kdk.app.component.redis;
 
 import java.util.concurrent.TimeUnit;
 
