@@ -85,14 +85,25 @@ public class RedisConfig {
     }
 
 	// Redis sub 메시지만 처리하는 Listener
-//	@Bean
-//	RedisMessageListenerContainer redisMessageListenerContainer(RedisSubscribeComponent redisSubscribeComponent) {
-//		RedisMessageListenerContainer container = new RedisMessageListenerContainer();
-//		container.setConnectionFactory(redisConnectionFactory());
-//
-//		container.addMessageListener(redisSubscribeComponent, new ChannelTopic("myTopic"));
-//
-//		return container;
-//	}
+	/*
+	@Bean
+	RedisMessageListenerContainer redisMessageListenerContainer(RedisSubscribeComponent redisSubscribeComponent) {
+		RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+		container.setConnectionFactory(redisConnectionFactory());
+
+		// "order."으로 시작하는 모든 토픽 구독 (예: order.created, order.cancelled)
+		// container.addMessageListener(redisSubscribeComponent, new PatternTopic("order.*"));
+
+		// 개별 토픽 리스트
+		List<Topic> topics = Arrays.asList(
+		    new ChannelTopic("topic1"),
+		    new ChannelTopic("topic2"),
+		    new ChannelTopic("topic3")
+		);
+		container.addMessageListener(redisSubscribeComponent, topics);
+
+		return container;
+	}
+	*/
 
 }
