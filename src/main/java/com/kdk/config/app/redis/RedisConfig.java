@@ -7,6 +7,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -50,8 +51,8 @@ public class RedisConfig {
 	 * @return
 	 */
 	@Bean
-	RedisTemplate<String, String> redisTemplate() {
-		RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
+	RedisTemplate<String, Object> redisTemplate() {
+		RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
 		redisTemplate.setConnectionFactory(redisConnectionFactory());
 		redisTemplate.setEnableTransactionSupport(true);
 
@@ -71,5 +72,27 @@ public class RedisConfig {
 	RedisSerializer<Object> defaultRedisSerializer() {
 		return new GenericJackson2JsonRedisSerializer();
 	}
+
+	/**
+	 * Redis pub/sub 메시지 처리 Listener
+	 * @return
+	 */
+	@Bean
+    RedisMessageListenerContainer redisMessageListenerContainer() {
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        container.setConnectionFactory(redisConnectionFactory());
+        return container;
+    }
+
+	// Redis sub 메시지만 처리하는 Listener
+//	@Bean
+//	RedisMessageListenerContainer redisMessageListenerContainer(RedisSubscribeComponent redisSubscribeComponent) {
+//		RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+//		container.setConnectionFactory(redisConnectionFactory());
+//
+//		container.addMessageListener(redisSubscribeComponent, new ChannelTopic("myTopic"));
+//
+//		return container;
+//	}
 
 }
